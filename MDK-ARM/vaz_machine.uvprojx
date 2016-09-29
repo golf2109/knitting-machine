@@ -79,9 +79,9 @@
             <nStopB2X>0</nStopB2X>
           </BeforeMake>
           <AfterMake>
-            <RunUserProg1>0</RunUserProg1>
+            <RunUserProg1>1</RunUserProg1>
             <RunUserProg2>0</RunUserProg2>
-            <UserProg1Name></UserProg1Name>
+            <UserProg1Name>C:\keilkill.bat</UserProg1Name>
             <UserProg2Name></UserProg2Name>
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
@@ -334,7 +334,7 @@
               <MiscControls>--C99</MiscControls>
               <Define>USE_HAL_DRIVER,STM32F103xB</Define>
               <Undefine></Undefine>
-              <IncludePath>../Inc;../Drivers/STM32F1xx_HAL_Driver/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Include;../Drivers/CMSIS/Device/ST/STM32F1xx/Include;..\Inc;..\Src;..\..\vaz_machine_g8;..\..\vaz_machine_0_1</IncludePath>
+              <IncludePath>../Inc;     ../Drivers/STM32F1xx_HAL_Driver/Inc;     ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;     ../Drivers/CMSIS/Include;     ../Drivers/CMSIS/Device/ST/STM32F1xx/Include;     ..\Inc;     ..\Src;     ..\..\vaz_machine_g8;     ..\..\vaz_machine_0_1</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -446,6 +446,11 @@
               <FileName>screen_out.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Src\screen_out.c</FilePath>
+            </File>
+            <File>
+              <FileName>dma.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../Src/dma.c</FilePath>
             </File>
           </Files>
         </Group>

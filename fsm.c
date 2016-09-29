@@ -7,7 +7,7 @@
 //    Do not change code in here!!!
 //
 //  Generated with Excel Table
-//  Date:  09/26/2016        Time:  16:07:38
+//  Date:  09/29/2016        Time:  09:52:58
 //
 //****************************************************************************//
 
@@ -30,14 +30,14 @@ const FSM_STATE_TABLE StateTable [NR_STATES][NR_EVENTS] =
   FSM_menu_4, STATE_4, FSM_menu_6, STATE_6, FSM_menu_51, STATE_51, FSM_menu_5, STATE_5, FSM_menu_5, STATE_5,
   FSM_menu_5, STATE_5, FSM_menu_7, STATE_7, FSM_menu_61, STATE_61, FSM_menu_6, STATE_6, FSM_menu_6, STATE_6,
   FSM_menu_6, STATE_6, FSM_menu_0, STATE_0, FSM_menu_71, STATE_71, FSM_menu_7, STATE_7, FSM_menu_7, STATE_7,
-  FSM_menu_01, STATE_01, FSM_menu_01, STATE_01, FSM_menu_01, STATE_01, FSM_menu_0, STATE_0, FSM_menu_0, STATE_0,
-  FSM_menu_11, STATE_11, FSM_menu_11, STATE_11, FSM_menu_11, STATE_11, FSM_menu_1, STATE_1, FSM_menu_1, STATE_1,
-  FSM_menu_21, STATE_21, FSM_menu_21, STATE_21, FSM_menu_21, STATE_21, FSM_menu_2, STATE_2, FSM_menu_2, STATE_2,
-  FSM_menu_31, STATE_31, FSM_menu_31, STATE_31, FSM_menu_31, STATE_31, FSM_menu_3, STATE_3, FSM_menu_3, STATE_3,
-  FSM_menu_41, STATE_41, FSM_menu_41, STATE_41, FSM_menu_41, STATE_41, FSM_menu_4, STATE_4, FSM_menu_4, STATE_4,
-  FSM_menu_51, STATE_51, FSM_menu_51, STATE_51, FSM_menu_51, STATE_51, FSM_menu_5, STATE_5, FSM_menu_5, STATE_5,
-  FSM_menu_61, STATE_61, FSM_menu_61, STATE_61, FSM_menu_61, STATE_61, FSM_menu_6, STATE_6, FSM_menu_6, STATE_6,
-  FSM_menu_71, STATE_71, FSM_menu_71, STATE_71, FSM_menu_71, STATE_71, FSM_menu_7, STATE_7, FSM_menu_7, STATE_7
+  FSM_menu_01, STATE_01, FSM_menu_01, STATE_01, FSM_menu_01, STATE_01, FSM_menu_01, STATE_01, FSM_menu_0, STATE_0,
+  FSM_menu_11, STATE_11, FSM_menu_11, STATE_11, FSM_menu_11, STATE_11, FSM_menu_11, STATE_11, FSM_menu_1, STATE_1,
+  FSM_menu_21, STATE_21, FSM_menu_21, STATE_21, FSM_menu_21, STATE_21, FSM_menu_21, STATE_21, FSM_menu_2, STATE_2,
+  FSM_menu_31, STATE_31, FSM_menu_31, STATE_31, FSM_menu_31, STATE_31, FSM_menu_31, STATE_31, FSM_menu_3, STATE_3,
+  FSM_menu_41, STATE_41, FSM_menu_41, STATE_41, FSM_menu_41, STATE_41, FSM_menu_41, STATE_41, FSM_menu_4, STATE_4,
+  FSM_menu_51, STATE_51, FSM_menu_51, STATE_51, FSM_menu_51, STATE_51, FSM_menu_51, STATE_51, FSM_menu_5, STATE_5,
+  FSM_menu_61, STATE_61, FSM_menu_61, STATE_61, FSM_menu_61, STATE_61, FSM_menu_61, STATE_61, FSM_menu_6, STATE_6,
+  FSM_menu_71, STATE_71, FSM_menu_71, STATE_71, FSM_menu_71, STATE_71, FSM_menu_71, STATE_71, FSM_menu_7, STATE_7
 };
 
 

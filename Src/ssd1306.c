@@ -11,7 +11,10 @@ SSD1306_t SSD1306;
 // Can not be used outside this file
 void ssd1306_WriteCommand(uint8_t command)
 {
-	HAL_I2C_Mem_Write(&hi2c1,SSD1306_I2C_ADDR,0x00,1,&command,1,10);
+//	HAL_I2C_Mem_Write(&hi2c1,SSD1306_I2C_ADDR,0x00,1,&command,1,10);
+	HAL_I2C_Mem_Write_DMA(&hi2c1,SSD1306_I2C_ADDR,0x00,1,&command,1);	
+	
+//       HAL_I2C_Mem_Write_DMA(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint16_t MemAddress, uint16_t MemAddSize, uint8_t *pData, uint16_t Size)		
 }
 
 //
@@ -80,13 +83,42 @@ void ssd1306_Fill(SSD1306_COLOR color)
 //	Send any changes to the buffer to the screen
 void ssd1306_UpdateScreen(void) 
 {
-	uint8_t i;	
-	for (i = 0; i < 8; i++) {
-		ssd1306_WriteCommand(0xB0 + i);
+
+			ssd1306_WriteCommand(0xB0);
 		ssd1306_WriteCommand(0x00);
 		ssd1306_WriteCommand(0x10);
+	uint8_t i;	
+	for (i = 0; i < 8; i++) {
+//		ssd1306_WriteCommand(0xB0 + i);
+//		ssd1306_WriteCommand(0x00);
+//		ssd1306_WriteCommand(0x10);
 //  Write everything mapper road map
-		HAL_I2C_Mem_Write(&hi2c1,SSD1306_I2C_ADDR,0x40,1,&SSD1306_Buffer[SSD1306_WIDTH * i],SSD1306_WIDTH,100);
+//  * @brief  Write an amount of data in blocking mode to a specific memory address
+//  * @param  hi2c Pointer to a I2C_HandleTypeDef structure that contains
+//  *                the configuration information for the specified I2C.
+//  * @param  DevAddress Target device address
+//  * @param  MemAddress Internal memory address
+//  * @param  MemAddSize Size of internal memory address
+//  * @param  pData Pointer to data buffer
+//  * @param  Size Amount of data to be sent
+//  * @param  Timeout Timeout duration		
+// 					HAL_I2C_Mem_Write(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint16_t MemAddress, uint16_t MemAddSize, uint8_t *pData, uint16_t Size, uint32_t Timeout)		
+//		  HAL_I2C_Mem_Write(&hi2c1,SSD1306_I2C_ADDR,0x40,1,&SSD1306_Buffer[SSD1306_WIDTH * i],SSD1306_WIDTH,1000);
+//  	HAL_I2C_Mem_Write(&hi2c1,SSD1306_I2C_ADDR,0x00,1,&command,1,10);
+		
+HAL_I2C_Mem_Write_DMA(&hi2c1,SSD1306_I2C_ADDR,0x40,1,&SSD1306_Buffer[SSD1306_WIDTH * i],SSD1306_WIDTH*8);
+//       HAL_I2C_Mem_Write_DMA(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint16_t MemAddress, uint16_t MemAddSize, uint8_t *pData, uint16_t Size)				
+//  * @brief  Write an amount of data in non-blocking mode with DMA to a specific memory address
+//  * @param  hi2c Pointer to a I2C_HandleTypeDef structure that contains
+//  *                the configuration information for the specified I2C.
+//  * @param  DevAddress Target device address
+//  * @param  MemAddress Internal memory address
+//  * @param  MemAddSize Size of internal memory address
+//  * @param  pData Pointer to data buffer
+//  * @param  Size Amount of data to be sent
+//  * @retval HAL status
+  
+
 	}
 }
 

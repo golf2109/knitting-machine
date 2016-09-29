@@ -33,6 +33,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f1xx_hal.h"
 #include "adc.h"
+#include "dma.h"
 #include "i2c.h"
 #include "gpio.h"
 
@@ -47,7 +48,8 @@
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
 extern	SSD1306_t SSD1306;
-volatile	uint32_t	key_scan,key_scan_1,key_counter;
+volatile	uint32_t	key_scan,key_scan_1,key_scan_2,key_counter,key_fast=2000, key_delay = 300, key_press=0;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -56,12 +58,42 @@ void Error_Handler(void);
 
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
+
 void HAL_SYSTICK_Callback(void)
 {
-	key_counter++;
+//	key_counter++;
+HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_5);
 	key_scan_1 = (GPIOA->IDR & 0xF8);
-	key_scan = (key_scan_1 >> 3);
-	key_scan ^= 0x1F;
+	key_scan_2 = (key_scan_1 >> 3);
+	
+	if (key_scan_2 == 0)
+	{
+		key_delay = 300;		
+		key_counter = 0;
+		key_press = 0;
+	}	
+	
+	if((key_scan_2 != 0) && (key_scan == 0))
+	{
+		key_counter++;
+		key_press++;
+		if((key_counter >= key_delay) && (key_press < key_fast))
+		{
+			key_scan = key_scan_2;
+			key_counter = 0;
+		}	
+		if(key_press > key_fast)
+		{
+			key_delay = 50;
+			key_scan = key_scan_2;
+			key_counter = 0;			
+			key_press = 0;
+		}
+	}
+	else
+	{
+		key_counter = 0;
+	}
 }
 /* USER CODE END PFP */
 
@@ -314,6 +346,7 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_DMA_Init();
   MX_ADC1_Init();
   MX_ADC2_Init();
   MX_I2C1_Init();
@@ -324,7 +357,7 @@ int main(void)
   ssd1306_Init();
   HAL_Delay(100);
   ssd1306_Fill(White);
-  ssd1306_UpdateScreen();
+//  ssd1306_UpdateScreen();
 
   HAL_Delay(100);
   ssd1306_SetCursor(1,3);
@@ -340,48 +373,52 @@ int main(void)
 	HAL_Delay(100);
 
   ssd1306_Fill(White);
-  ssd1306_UpdateScreen();
+//  ssd1306_UpdateScreen();
 	
 
   ssd1306_SetCursor(1,20);
-  ssd1306_WriteString("   SETUP",Font_11x18,Black, NoInversion);
+  ssd1306_WriteString("¿¡¬√ƒ≈∆«",Font_11x18,Black, NoInversion);
   ssd1306_UpdateScreen();	
 	HAL_Delay(100);
 	FSM_Init ();
-  ssd1306_UpdateScreen();	
+//  ssd1306_UpdateScreen();	
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-		
-		switch(key_scan)
+		if(key_scan != 0)
 		{
-			case 1:
-				FSM_press_down();
-			break;
+			switch(key_scan)
+			{
+				case 1:
+					FSM_press_down();
+				break;
+				
+				case 2:
+					FSM_press_up();		
+				break;
 			
-			case 2:
-				FSM_press_up();
-			break;
+				case 4:
+					FSM_press_rigth();	
+				break;
 			
-			case 4:
-				FSM_press_rigth();
-			break;
+				case 8:
+					FSM_press_left();	
+				break;
+				
+				case 0x10:
+					FSM_press_ok();
+				break;			
 			
-			case 8:
-				FSM_press_left();
-			break;
-			
-			case 0x10:
-				FSM_press_ok();
-			break;			
-			
-			default:
-				break;				
+				default:
+					break;				
 		}		
-		HAL_Delay(200);
+		HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_15);		
+		key_scan = 0;
+//		__enable_irq();
+	}
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */

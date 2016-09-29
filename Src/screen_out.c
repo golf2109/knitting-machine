@@ -1,6 +1,7 @@
 #include "screen_out.h"
 
 uint8_t	del;
+extern	uint8_t	cursor_pos;
 
 void int_to_char (uint16_t in_value)
 {
@@ -53,4 +54,17 @@ void out_char_pos(uint8_t pos)
   ssd1306_UpdateScreen();		
 }
 
+void out_cursor_position(SSD1306_COLOR color)
+{
+				if(cursor_pos <3)
+				{
+					ssd1306_DrawLine(3+cursor_pos*44,40,33+cursor_pos*44,40,color);		
+					ssd1306_DrawLine(3+cursor_pos*44,41,33+cursor_pos*44,41,color);			
+				}
+				else
+				{
+					ssd1306_DrawLine(3+(cursor_pos-3)*44,61,33+(cursor_pos-3)*44,61,color);		
+					ssd1306_DrawLine(3+(cursor_pos-3)*44,62,33+(cursor_pos-3)*44,62,color);						
+				}		
+}
 

@@ -496,7 +496,7 @@ ARM Macro Assembler    Page 8
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
 ork --depend=vaz_machine\startup_stm32f103xb.d -ovaz_machine\startup_stm32f103x
-b.o -IH:\!STM32\Work\Vyz\vaz_machine_0_1\MDK-ARM\RTE -IC:\Keil_v520\ARM\PACK\AR
+b.o -IH:\!STM32\Work\Vyz\vaz_machine_0_2\MDK-ARM\RTE -IC:\Keil_v520\ARM\PACK\AR
 M\CMSIS\4.5.0\CMSIS\Include -IC:\Keil_v520\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\De
 vice\Include --predefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION SET
 A 520" --predefine="_RTE_ SETA 1" --predefine="STM32F10X_MD SETA 1" --list=star
